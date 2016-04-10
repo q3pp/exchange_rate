@@ -1,0 +1,7 @@
+.navbar.navbar-default
+  ul.nav.navbar-nav
+    li class=(params[:action] == 'new' ? 'active' : '')
+      a href='/admin'  Admin page 
+    li class=(params[:action] != 'new' ? 'active' : '')
+      a href='/' To main page
+  

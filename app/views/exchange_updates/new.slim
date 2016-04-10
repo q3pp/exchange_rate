@@ -1,0 +1,31 @@
+= form_for @exchange_update, html:{class: 'form-horizontal',role: 'form'} do |f|
+  - if @exchange_update.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@exchange_update.errors.count, "error")} prohibited this project from being saved:"
+        ul
+          - @exchange_update.errors.full_messages.each do |message|
+            li = message
+  
+  .form-group
+    = f.label :rate, class: 'control-label col-sm-2'
+    .col-sm-10.has-feedback.has-feedback-left
+      = f.number_field :rate, class: 'form-control', step: "any" 
+  
+  .form-group
+    = f.label :time, class: 'control-label col-sm-2'
+    .col-sm-10.has-feedback.has-feedback-left
+      = f.text_field :time, class: 'form-control datetimepicker'
+
+  = f.submit 'Update rate', class: 'btn btn-primary btn-lg btn-block', id: 'update-rate'
+
+table.table.table-hover
+  thead
+    th Rate
+    th Update time
+  tbody
+    - @exchange_updates.each do |eu|
+      tr
+        td 
+          = eu.rate.to_f
+        td
+          = eu.time
